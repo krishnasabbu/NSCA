@@ -3,9 +3,8 @@ import { View, Text, StyleSheet, TouchableOpacity, Platform } from 'react-native
 import { useAuth } from '@/hooks/useAuth';
 import { Menu, Bell, User } from 'lucide-react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { useRouter } from 'expo-router';
 import { DrawerActions } from '@react-navigation/native';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation } from 'expo-router';
 import NotificationDropdown from './NotificationDropdown';
 
 interface HeaderProps {

@@ -1,7 +1,6 @@
 import { useEffect } from 'react';
-import { Stack } from 'expo-router';
+import { Slot } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
-import { NavigationContainer } from '@react-navigation/native';
 import { useFrameworkReady } from '@/hooks/useFrameworkReady';
 import { AuthProvider } from '@/contexts/AuthContext';
 import { useFonts, Inter_400Regular, Inter_500Medium, Inter_600SemiBold, Inter_700Bold } from '@expo-google-fonts/inter';
@@ -30,17 +29,9 @@ export default function RootLayout() {
   }
 
   return (
-    <NavigationContainer>
-      <AuthProvider>
-        <>
-          <Stack screenOptions={{ headerShown: false }}>
-            <Stack.Screen name="auth" />
-            <Stack.Screen name="(drawer)" />
-            <Stack.Screen name="+not-found" />
-          </Stack>
-          <StatusBar style="auto" />
-        </>
-      </AuthProvider>
-    </NavigationContainer>
+    <AuthProvider>
+      <Slot />
+      <StatusBar style="auto" />
+    </AuthProvider>
   );
 }
