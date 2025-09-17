@@ -6,7 +6,6 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useNavigation } from '@react-navigation/native';
 import { DrawerNavigationProp } from '@react-navigation/drawer';
 import NotificationDropdown from './NotificationDropdown';
-import { useDrawer } from 'expo-router/drawer';
 
 interface HeaderProps {
   title: string;
@@ -18,10 +17,10 @@ export default function Header({ title, showProfile = true }: HeaderProps) {
   const insets = useSafeAreaInsets();
   const navigation = useNavigation<DrawerNavigationProp<any>>();
   const [showNotifications, setShowNotifications] = useState(false);
-  const drawer = useDrawer();
+  
   const handleMenuPress = () => {
     try {
-      drawer.openDrawer();
+      navigation.openDrawer();
     } catch (error) {
       console.error('Error opening drawer:', error);
     }
