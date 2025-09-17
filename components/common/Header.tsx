@@ -3,8 +3,9 @@ import { View, Text, StyleSheet, TouchableOpacity, Platform } from 'react-native
 import { useAuth } from '@/hooks/useAuth';
 import { Menu, Bell, User } from 'lucide-react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { useRouter } from 'expo-router';
+import { DrawerActions } from '@react-navigation/native';
 import { useNavigation } from '@react-navigation/native';
-import { DrawerNavigationProp } from '@react-navigation/drawer';
 import NotificationDropdown from './NotificationDropdown';
 
 interface HeaderProps {
@@ -15,12 +16,12 @@ interface HeaderProps {
 export default function Header({ title, showProfile = true }: HeaderProps) {
   const { user } = useAuth();
   const insets = useSafeAreaInsets();
-  const navigation = useNavigation<DrawerNavigationProp<any>>();
+  const navigation = useNavigation();
   const [showNotifications, setShowNotifications] = useState(false);
   
   const handleMenuPress = () => {
     try {
-      navigation.openDrawer();
+      navigation.dispatch(DrawerActions.openDrawer());
     } catch (error) {
       console.error('Error opening drawer:', error);
     }
