@@ -4,9 +4,8 @@ import { View, Text, StyleSheet, Platform, Alert } from 'react-native';
 import { DrawerContentScrollView, DrawerItem, DrawerContentComponentProps } from '@react-navigation/drawer';
 import { useRouter } from 'expo-router';
 import { useAuth } from '@/hooks/useAuth';
-import { Chrome as Home, BookOpen, Calendar, Users, ChartBar as BarChart3, Settings, LogOut, GraduationCap, UserCheck, Bell, Target, FolderOpen } from 'lucide-react-native';
+import { Home, BookOpen, Calendar, Users, BarChart3, Settings, LogOut, GraduationCap, UserCheck, Bell, Target, FolderOpen } from 'lucide-react-native';
 import { Activity } from 'lucide-react-native';
-import BottomTabBar from '@/components/common/BottomTabBar';
 
 function CustomDrawerContent(props: DrawerContentComponentProps) {
   const { user, logout } = useAuth();
@@ -154,106 +153,100 @@ function CustomDrawerContent(props: DrawerContentComponentProps) {
 
 export default function DrawerLayout() {
   return (
-    <View style={styles.container}>
-      <Drawer
-        drawerContent={(props) => <CustomDrawerContent {...props} />}
-        screenOptions={{
-          headerShown: false,
-          drawerStyle: {
-            backgroundColor: '#fff',
-            width: Platform.OS === 'web' ? 280 : 280,
-          },
-          drawerType: Platform.OS === 'web' ? 'permanent' : 'front',
+    <Drawer
+      drawerContent={(props) => <CustomDrawerContent {...props} />}
+      screenOptions={{
+        headerShown: false,
+        drawerStyle: {
+          backgroundColor: '#fff',
+          width: Platform.OS === 'web' ? 280 : 280,
+        },
+        drawerType: Platform.OS === 'web' ? 'permanent' : 'front',
+      }}
+    >
+      <Drawer.Screen 
+        name="index" 
+        options={{
+          drawerLabel: 'Dashboard',
         }}
-      >
-        <Drawer.Screen 
-          name="index" 
-          options={{
-            drawerLabel: 'Dashboard',
-          }}
-        />
-        <Drawer.Screen 
-          name="learning" 
-          options={{
-            drawerLabel: 'Learning Hub',
-          }}
-        />
-        <Drawer.Screen 
-          name="attendance" 
-          options={{
-            drawerLabel: 'Attendance',
-          }}
-        />
-        <Drawer.Screen 
-          name="schedule" 
-          options={{
-            drawerLabel: 'Schedule',
-          }}
-        />
-        <Drawer.Screen 
-          name="notifications" 
-          options={{
-            drawerLabel: 'Notifications',
-          }}
-        />
-        <Drawer.Screen 
-          name="profile" 
-          options={{
-            drawerLabel: 'Profile',
-          }}
-        />
-        <Drawer.Screen 
-          name="students" 
-          options={{
-            drawerLabel: 'Students',
-          }}
-        />
-        <Drawer.Screen 
-          name="content" 
-          options={{
-            drawerLabel: 'Content',
-          }}
-        />
-        <Drawer.Screen 
-          name="users" 
-          options={{
-            drawerLabel: 'Users',
-          }}
-        />
-        <Drawer.Screen 
-          name="batches" 
-          options={{
-            drawerLabel: 'Batches',
-          }}
-        />
-        <Drawer.Screen 
-          name="analytics" 
-          options={{
-            drawerLabel: 'Analytics',
-          }}
-        />
-        <Drawer.Screen 
-          name="yoyo-test" 
-          options={{
-            drawerLabel: 'Yoyo Test',
-          }}
-        />
-        <Drawer.Screen 
-          name="settings" 
-          options={{
-            drawerLabel: 'Settings',
-          }}
-        />
-      </Drawer>
-      {Platform.OS !== 'web' && <BottomTabBar />}
-    </View>
+      />
+      <Drawer.Screen 
+        name="learning" 
+        options={{
+          drawerLabel: 'Learning Hub',
+        }}
+      />
+      <Drawer.Screen 
+        name="attendance" 
+        options={{
+          drawerLabel: 'Attendance',
+        }}
+      />
+      <Drawer.Screen 
+        name="schedule" 
+        options={{
+          drawerLabel: 'Schedule',
+        }}
+      />
+      <Drawer.Screen 
+        name="notifications" 
+        options={{
+          drawerLabel: 'Notifications',
+        }}
+      />
+      <Drawer.Screen 
+        name="profile" 
+        options={{
+          drawerLabel: 'Profile',
+        }}
+      />
+      <Drawer.Screen 
+        name="students" 
+        options={{
+          drawerLabel: 'Students',
+        }}
+      />
+      <Drawer.Screen 
+        name="content" 
+        options={{
+          drawerLabel: 'Content',
+        }}
+      />
+      <Drawer.Screen 
+        name="users" 
+        options={{
+          drawerLabel: 'Users',
+        }}
+      />
+      <Drawer.Screen 
+        name="batches" 
+        options={{
+          drawerLabel: 'Batches',
+        }}
+      />
+      <Drawer.Screen 
+        name="analytics" 
+        options={{
+          drawerLabel: 'Analytics',
+        }}
+      />
+      <Drawer.Screen 
+        name="yoyo-test" 
+        options={{
+          drawerLabel: 'Yoyo Test',
+        }}
+      />
+      <Drawer.Screen 
+        name="settings" 
+        options={{
+          drawerLabel: 'Settings',
+        }}
+      />
+    </Drawer>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
   drawerContainer: {
     flex: 1,
     backgroundColor: '#fff',

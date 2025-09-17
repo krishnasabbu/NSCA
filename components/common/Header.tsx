@@ -5,7 +5,6 @@ import { Menu, Bell, User } from 'lucide-react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { DrawerActions } from '@react-navigation/native';
 import { useNavigation } from 'expo-router';
-import NotificationDropdown from './NotificationDropdown';
 
 interface HeaderProps {
   title: string;
@@ -16,7 +15,6 @@ export default function Header({ title, showProfile = true }: HeaderProps) {
   const { user } = useAuth();
   const insets = useSafeAreaInsets();
   const navigation = useNavigation();
-  const [showNotifications, setShowNotifications] = useState(false);
   
   const handleMenuPress = () => {
     try {
@@ -24,10 +22,6 @@ export default function Header({ title, showProfile = true }: HeaderProps) {
     } catch (error) {
       console.error('Error opening drawer:', error);
     }
-  };
-
-  const handleNotificationPress = () => {
-    setShowNotifications(!showNotifications);
   };
 
   return (
@@ -42,10 +36,7 @@ export default function Header({ title, showProfile = true }: HeaderProps) {
         </View>
         
         <View style={styles.rightActions}>
-          <TouchableOpacity 
-            style={styles.notificationButton} 
-            onPress={handleNotificationPress}
-          >
+          <TouchableOpacity style={styles.notificationButton}>
             <Bell size={22} color="#666" />
             <View style={styles.notificationBadge}>
               <Text style={styles.badgeText}>3</Text>
@@ -61,12 +52,6 @@ export default function Header({ title, showProfile = true }: HeaderProps) {
           )}
         </View>
       </View>
-      
-      {showNotifications && (
-        <NotificationDropdown 
-          onClose={() => setShowNotifications(false)}
-        />
-      )}
     </View>
   );
 }
